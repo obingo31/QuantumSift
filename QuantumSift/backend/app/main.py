@@ -4,6 +4,7 @@ from fastapi.middleware.trustedhost import TrustedHostMiddleware
 import uvicorn
 import logging
 import sentry_sdk
+from datetime import datetime
 
 # Import routers
 from routes.contracts import router as contracts_router
@@ -75,6 +76,15 @@ async def health_check():
     """Basic health check endpoint"""
     return {"status": "healthy"}
 
+# Test endpoint for Vercel deployment
+@app.get("/api/test")
+async def test_endpoint():
+    return {
+        "status": "ok",
+        "message": "QuantumSift API is running on Vercel",
+        "timestamp": datetime.utcnow().isoformat()
+    }
+
 # WebSocket for real-time updates
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
@@ -85,14 +95,3 @@ async def websocket_endpoint(websocket: WebSocket):
             # Process and broadcast WebSocket messages
             await websocket.send_text(f"Message received: {data}")
     except WebSocketDisconnect:
-        logger.info("WebSocket connection closed")
-
-# Run the application (for development)
-if __name__ == "__main__":
-    uvicorn.run(
-        "main:app", 
-        host="0.0.0.0", 
-        port=8000, 
-        reload=True
-    )
-
