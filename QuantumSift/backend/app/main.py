@@ -95,3 +95,13 @@ async def websocket_endpoint(websocket: WebSocket):
             # Process and broadcast WebSocket messages
             await websocket.send_text(f"Message received: {data}")
     except WebSocketDisconnect:
+        logger.info("WebSocket connection closed")
+
+# Run the application (for development)
+if __name__ == "__main__":
+    uvicorn.run(
+        "main:app", 
+        host="0.0.0.0", 
+        port=8000, 
+        reload=True
+    )
