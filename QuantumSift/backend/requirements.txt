@@ -1,0 +1,41 @@
+# FastAPI and ASGI Server
+fastapi==0.95.2
+uvicorn==0.22.0
+python-multipart==0.0.6
+
+# Machine Learning and NLP
+scikit-learn==1.2.2
+numpy==1.24.3
+transformers==4.30.2
+torch==2.0.1
+sentencepiece==0.1.97
+protobuf==4.23.3
+
+# Web3 Support
+web3==1.10.0
+eth-account==0.8.0
+eth-utils==2.1.0
+
+# WebSocket Support
+# websockets==11.0.3
+
+# Development and Debugging
+python-dotenv==1.0.0
+loguru==0.7.0
+
+# Database
+sqlalchemy==2.0.15
+alembic==1.10.4
+
+# Security
+python-jose==0.4.0
+passlib==1.7.4
+bcrypt==4.0.1
+sentry-sdk==1.25.1
+
+# Testing
+pytest==7.3.1
+httpx==0.24.1
+
+# Type Hints
+pydantic==1.10.9
