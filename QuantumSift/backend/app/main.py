@@ -32,15 +32,25 @@ app = FastAPI(
 # Security Middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allows all origins
+    allow_origins=[
+        "http://localhost:3000",
+        "http://localhost:5173",
+        "https://quantum-sift.vercel.app",
+        "https://*.vercel.app"
+    ],
     allow_credentials=True,
-    allow_methods=["*"],  # Allows all methods
-    allow_headers=["*"],  # Allows all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 app.add_middleware(
     TrustedHostMiddleware, 
-    allowed_hosts=["localhost", "127.0.0.1"]  # Add your domain
+    allowed_hosts=[
+        "localhost",
+        "127.0.0.1",
+        "quantum-sift.vercel.app",
+        "*.vercel.app"
+    ]
 )
 
 # Include routers
@@ -85,3 +95,4 @@ if __name__ == "__main__":
         port=8000, 
         reload=True
     )
+
